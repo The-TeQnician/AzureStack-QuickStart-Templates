@@ -5,11 +5,11 @@
     "namePrefix": {
       "type": "string",
       "minLength": 3,
-      "maxLength": 5,
+      "maxLength": 6,
       "metadata": {
-        "description": "Naming prefix for each new resource created. 3-char min, 5-char max, lowercase alphanumeric"
+        "description": "Naming prefix for each new resource created. 3-char min, 6-char max, lowercase alphanumeric"
       },
-      "defaultValue": "aps"
+      "defaultValue": "appsvc"
     },
     "domainVmSize": {
       "type": "string",
@@ -128,7 +128,7 @@
       "metadata": {
         "description": "Location of resources that the script is dependent on such as linked templates and DSC modules"
       },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/AzureStack-QuickStart-Templates/master/appservice-fileserver-sqlserver-ha"
+      "defaultValue": "https://raw.githubusercontent.com/The-TeQnician/AzureStack-QuickStart-Templates/master/appservice-fileserver-sqlserver-ha"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
@@ -148,17 +148,20 @@
   "variables": {
     "storageAccountType": "Premium_LRS",
     "names": {
-      "adNsg": "[concat(parameters('namePrefix'), '-ad-Nsg')]",
-      "sqlNsg": "[concat(parameters('namePrefix'), '-sql-Nsg')]",
-      "fsNsg": "[concat(parameters('namePrefix'), '-fs-Nsg')]",
-      "vnet": "[concat(parameters('namePrefix'), '-vnet')]",
+      "adNsg": "[concat(parameters('namePrefix'), 'ADNSG')]",
+      "sqlNsg": "[concat(parameters('namePrefix'), 'SQLNSG')]",
+      "fsNsg": "[concat(parameters('namePrefix'), 'FSNSG')]",
+      "fsCLNsg": "[concat(parameters('namePrefix'), 'FSCLNSG')]",
+      "vnet": "[concat(parameters('namePrefix'), 'VNET')]",
       "adSubnetName": "ADSubnet",
       "sqlSubnetName": "SQLSubnet",
-      "fileServerSubnetName": "FileServerSubnet"
+      "fileServerSubnetName": "FileServerSubnet",
+      "fileServerCLSubnetName": "FileServerCLSubnet"
     },
     "adsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').adSubnetName)]",
     "sqlsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').sqlSubnetName)]",
     "fileserversubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').fileServerSubnetName)]",
+    "fileserverCLsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').fileServerCLSubnetName)]",
     "NestedTemplate": {
       "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
       "deployNetworkDNS": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetworkDNS.json',parameters('_artifactsLocationSasToken'))]",
@@ -170,13 +173,14 @@
     "adSubnetPrefix": "10.0.0.0/24",
     "sqlSubnetPrefix": "10.0.1.0/24",
     "fsSubnetPrefix": "10.0.2.0/24",
-    "controllerSubnetPrefix": "10.0.3.0/24",
-    "managementSubnetPrefix": "10.0.4.0/24",
-    "publisherSubnetPrefix": "10.0.5.0/24",
-    "frontendadSubnetPrefix": "10.0.6.0/24",
+    "fsSubnetCLPrefix": "10.0.3.0/24",
+    "controllerSubnetPrefix": "10.0.4.0/24",
+    "managementSubnetPrefix": "10.0.5.0/24",
+    "publisherSubnetPrefix": "10.0.6.0/24",
+    "frontendadSubnetPrefix": "10.0.7.0/24",
     "workerSubnetPrefix": "10.0.8.0/21",
-    "adStatipIP":["10.0.0.100","10.0.0.101"],
-    "sqllistenerip":"10.0.1.100",
+    "adStatipIP":["10.0.0.10","10.0.0.11"],
+    "sqllistenerip":"10.0.1.250",
     "networkSettings": {
       "vnetName": "[variables('names').vnet]",
       "addressSpace": {
@@ -209,6 +213,15 @@
             "addressPrefix": "[variables('fsSubnetPrefix')]",
             "networkSecurityGroup": {
               "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsNsg )]"
+            }
+          }
+        },
+        {
+          "name": "[variables('names').fileServerCLSubnetName]",
+          "properties": {
+            "addressPrefix": "[variables('fsSubnetCLPrefix')]",
+            "networkSecurityGroup": {
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsCLNsg )]"
             }
           }
         },
@@ -267,6 +280,15 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[variables('names').fsCLNsg]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/networkSecurityGroups",
       "name": "[variables('names').sqlNsg]",
       "location": "[parameters('location')]",
       "properties": {
@@ -295,6 +317,7 @@
       "dependsOn": [
         "[variables('names').adNsg]",
         "[variables('names').fsNsg]",
+        "[variables('names').fsCLNsg]",
         "[variables('names').sqlNsg]"
       ]
     },
@@ -426,6 +449,9 @@
           },
           "nicSubnetUri": {
             "value": "[variables('fileserversubnetRef')]"
+          },
+          "nic2SubnetUri": {
+          "value": "[variables('fileserverCLsubnetRef')]"
           },
           "vmSize": {
             "value": "[parameters('filServerVmSize')]"
