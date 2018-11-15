@@ -9,7 +9,7 @@
       "metadata": {
         "description": "Naming prefix for each new resource created. 3-char min, 6-char max, lowercase alphanumeric"
       },
-      "defaultValue": "appsvc"
+      "defaultValue": "appsv"
     },
     "domainVmSize": {
       "type": "string",
