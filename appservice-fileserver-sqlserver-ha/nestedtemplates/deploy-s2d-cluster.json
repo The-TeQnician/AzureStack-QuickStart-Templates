@@ -85,6 +85,12 @@
         "description": "Resource ID for existing vnet/subnet to which VM NICs should be attached"
       }
     },
+    "nic2SubnetUri": {
+      "type": "string",
+       "metadata": {
+          "description": "Resource ID for existing vnet/subnet to which VM NICs should be attached"
+        }
+    },
     "vmSize": {
       "type": "string",
       "metadata": {
