@@ -2,6 +2,15 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "namePrefix": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 6,
+      "metadata": {
+        "description": "Naming prefix for each new resource created. 3-char min, 6-char max, lowercase alphanumeric"
+      },
+      "defaultValue": "appsv"
+    },
     "vnetName": {
     "type": "string",
     "defaultValue": "APPSvcRP-VNet",
@@ -175,7 +184,7 @@
       "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
     },
     "adStatipIP":["10.0.0.10","10.0.0.11"],
-    "sqllistenerip":"10.0.1.250"
+    "sqllistenerip":"10.0.1.250",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
