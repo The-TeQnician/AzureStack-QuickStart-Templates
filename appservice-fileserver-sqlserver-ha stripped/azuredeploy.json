@@ -1,0 +1,308 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+    "type": "string",
+    "defaultValue": "APPSvcRP-VNet",
+    "metadata": {
+      "description": "Name of the Virtual Network"
+    }
+  },
+  "VnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.0.0/16",
+    "metadata": {
+      "description": "VNET Address prefix"
+    }
+  },
+  "adSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.0.0/24",
+    "metadata": {
+      "description": "AD Subnet Prefix"
+    }
+  },
+  "adSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-AD",
+    "metadata": {
+      "description": "AD Subnet Name"
+    }
+  },
+  "fsSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.1.0/24",
+    "metadata": {
+      "description": "FileServer Subnet Prefix"
+    }
+  },
+  "fsSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-FS",
+    "metadata": {
+      "description": "FileServer Subnet Name"
+    }
+  },
+  "fsCLSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.2.0/24",
+    "metadata": {
+      "description": "FileServer Cluster Subnet Prefix"
+    }
+  },
+  "fsCLSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-FS-CL",
+    "metadata": {
+      "description": "FileServer Cluster Subnet Name"
+    }
+  },
+  "SQLSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.3.0/24",
+    "metadata": {
+      "description": "SQL Subnet Prefix"
+    }
+  },
+  "SQLSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-SQL",
+    "metadata": {
+      "description": "SQL Subnet Name"
+    }
+  },
+  "ControllersubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.4.0/24",
+    "metadata": {
+      "description": "Controller Subnet Prefix"
+    }
+  },
+  "ControllersubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-Controller",
+    "metadata": {
+      "description": "Controller Subnet Name"
+    }
+  },
+    "ManagementsubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.5.0/24",
+      "metadata": {
+        "description": "Management Subnet Prefix"
+      }
+    },
+    "ManagementsubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Management",
+      "metadata": {
+        "description": "Management Subnet Name"
+      }
+    },
+    "FrontendsubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.6.0/24",
+      "metadata": {
+        "description": "FrontEnd Subnet Prefix"
+      }
+    },
+    "FrontendsubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-FrontEnd",
+      "metadata": {
+        "description": "Frontend Subnet Name"
+      }
+    },
+    "PublishersubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.7.0/24",
+      "metadata": {
+        "description": "Publisher Subnet Prefix"
+      }
+    },
+    "PublishersubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Publisher",
+      "metadata": {
+        "description": "Publisher Subnet Name"
+      }
+    },
+    "WorkerssubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.8.0/21",
+      "metadata": {
+        "description": "Workers Subnet Prefix"
+      }
+    },
+    "WorkerssubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Workers",
+      "metadata": {
+        "description": "Worker Subnet Name"
+      }
+    },
+    "_artifactsLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "Location of resources that the script is dependent on such as linked templates and DSC modules"
+      },
+      "defaultValue": "https://raw.githubusercontent.com/The-TeQnician/AzureStack-QuickStart-Templates/master/appservice-fileserver-sqlserver-ha"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated."
+      },
+      "defaultValue": ""
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    }
+  },
+  "variables": {
+    "names": {
+      "adNsg": "[concat(parameters('namePrefix'), 'ADNSG')]",
+      "sqlNsg": "[concat(parameters('namePrefix'), 'SQLNSG')]",
+      "fsNsg": "[concat(parameters('namePrefix'), 'FSNSG')]",
+      "fsCLNsg": "[concat(parameters('namePrefix'), 'FSCLNSG')]",
+    },
+    "NestedTemplate": {
+      "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
+    },
+    "adStatipIP":["10.0.0.10","10.0.0.11"],
+    "sqllistenerip":"10.0.1.250"
+    "networkSettings": {
+      "vnetName": "[parameters('vnetName')]",
+      "addressSpace": {
+        "addressPrefixes": [
+          "[parameters('vnetPrefix')]"
+        ]
+      },
+      "subnets": [
+        {
+          "name": "[parameters('adSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('adSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('fsSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('fsSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('fsCLSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('fsCLSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('sqlSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('sqlSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('controllerSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('controllerSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('ManagementSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('ManagementSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('FrontendSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('FrontendSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('PublisherSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('PublisherSubnetPrefix')]"
+          }
+        },
+        {
+          "name": "[parameters('WorkersSubnetName')]",
+          "properties": {
+            "addressPrefix": "[parameters('WorkersSubnetPrefix')]"
+          }
+        }
+      ]
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('adSubnetName').adNsg]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('fsSubnetName').fsNsg]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('fsCLSubnetName').fsCLNsg]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('sqlSubnetName').sqlNsg]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "name": "NetworkDeployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2016-02-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('NestedTemplate').deployNetwork]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "networkSettings": {
+            "value": "[variables('networkSettings')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[parameters('adSubnetName').adNsg]",
+        "[parameters('fsSubnetName').fsNsg]",
+        "[parameters('fsclSubnetName').fsCLNsg]",
+        "[parameters('sqlSubnetName').sqlNsg]"
+      ]
+     }
+    ]
+}

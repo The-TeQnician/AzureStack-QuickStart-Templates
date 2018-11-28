@@ -1,0 +1,104 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkSettings":  {
+            "vnetName": "[parameters('vnetName')]",
+            "addressSpace": {
+                "addressPrefixes": [
+                    "[parameters('vnetPrefix')]"
+                ]
+            },
+            "subnets": [
+                {
+                    "name": "[parameters('adSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('adSubnetPrefix')]",
+                        "networkSecurityGroup": {
+                            "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('adSubnetName').adNsg )]"
+                        }
+                    }
+                },
+                {
+                    "name": "[parameters('fsSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('fsSubnetPrefix')]",
+                        "networkSecurityGroup": {
+                            "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsSubnetName').sqlNsg )]"
+                        }
+                    }
+                },
+                {
+                    "name": "[parameters('fsCLSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('fsCLSubnetPrefix')]",
+                        "networkSecurityGroup": {
+                            "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsCLSubnetName').fsNsg )]"
+                        }
+                    }
+                },
+                {
+                    "name": "[parameters('sqlSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('sqlSubnetPrefix')]",
+                        "networkSecurityGroup": {
+                            "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('sqlSubnetName').fsCLNsg )]"
+                        }
+                    }
+                },
+                {
+                    "name": "[parameters('controllerSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('controllerSubnetPrefix')]"
+                    }
+                },
+                {
+                    "name": "[parameters('ManagementSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('ManagementSubnetPrefix')]"
+                    }
+                },
+                {
+                    "name": "[parameters('FrontendSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('FrontendSubnetPrefix')]"
+                    }
+                },
+                {
+                    "name": "[parameters('PublisherSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('PublisherSubnetPrefix')]"
+                    }
+                },
+                {
+                    "name": "[parameters('WorkersSubnetName')]",
+                    "properties": {
+                        "addressPrefix": "[parameters('WorkersSubnetPrefix')]"
+                    }
+                }
+            ]
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('networkSettings').vnetName]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "displayName": "[parameters('networkSettings').vnetName]"
+            },
+            "dependsOn": [],
+            "properties": {
+                "addressSpace":  "[parameters('networkSettings').addressSpace]",
+                "subnets": "[parameters('networkSettings').subnets]"
+            }
+        }
+    ],
+    "outputs": {}
+}
+
+
+
+    
