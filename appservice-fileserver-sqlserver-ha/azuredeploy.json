@@ -109,6 +109,147 @@
         "description": "Password for the SQL account"
       }
     },
+    "vnetName": {
+    "type": "string",
+    "defaultValue": "APPSvcRP-VNet",
+    "metadata": {
+      "description": "Name of the Virtual Network"
+    }
+  },
+  "VnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.0.0/16",
+    "metadata": {
+      "description": "VNET Address prefix"
+    }
+  },
+  "adSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.0.0/24",
+    "metadata": {
+      "description": "AD Subnet Prefix"
+    }
+  },
+  "adSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-AD",
+    "metadata": {
+      "description": "AD Subnet Name"
+    }
+  },
+  "fsSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.1.0/24",
+    "metadata": {
+      "description": "FileServer Subnet Prefix"
+    }
+  },
+  "fsSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-FS",
+    "metadata": {
+      "description": "FileServer Subnet Name"
+    }
+  },
+  "fsCLSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.2.0/24",
+    "metadata": {
+      "description": "FileServer Cluster Subnet Prefix"
+    }
+  },
+  "fsCLSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-FS-CL",
+    "metadata": {
+      "description": "FileServer Cluster Subnet Name"
+    }
+  },
+  "SQLSubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.3.0/24",
+    "metadata": {
+      "description": "SQL Subnet Prefix"
+    }
+  },
+  "SQLSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-SQL",
+    "metadata": {
+      "description": "SQL Subnet Name"
+    }
+  },
+  "ControllersubnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.4.0/24",
+    "metadata": {
+      "description": "Controller Subnet Prefix"
+    }
+  },
+  "ControllersubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-Controller",
+    "metadata": {
+      "description": "Controller Subnet Name"
+    }
+  },
+    "ManagementsubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.5.0/24",
+      "metadata": {
+        "description": "Management Subnet Prefix"
+      }
+    },
+    "ManagementsubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Management",
+      "metadata": {
+        "description": "Management Subnet Name"
+      }
+    },
+    "FrontendsubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.6.0/24",
+      "metadata": {
+        "description": "FrontEnd Subnet Prefix"
+      }
+    },
+    "FrontendsubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-FrontEnd",
+      "metadata": {
+        "description": "Frontend Subnet Name"
+      }
+    },
+    "PublishersubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.7.0/24",
+      "metadata": {
+        "description": "Publisher Subnet Prefix"
+      }
+    },
+    "PublishersubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Publisher",
+      "metadata": {
+        "description": "Publisher Subnet Name"
+      }
+    },
+    "WorkerssubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.8.0/21",
+      "metadata": {
+        "description": "Workers Subnet Prefix"
+      }
+    },
+    "WorkerssubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Workers",
+      "metadata": {
+        "description": "Worker Subnet Name"
+      }
+    },
+
     "sofsName": {
       "type": "string",
       "metadata": {
@@ -158,10 +299,6 @@
       "fileServerSubnetName": "FileServerSubnet",
       "fileServerCLSubnetName": "FileServerCLSubnet"
     },
-    "adsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').adSubnetName)]",
-    "sqlsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').sqlSubnetName)]",
-    "fileserversubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').fileServerSubnetName)]",
-    "fileserverCLsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('names').vnet,variables('names').fileServerCLSubnetName)]",
     "NestedTemplate": {
       "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
       "deployNetworkDNS": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetworkDNS.json',parameters('_artifactsLocationSasToken'))]",
@@ -169,90 +306,80 @@
       "deployS2D": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-s2d-cluster.json',parameters('_artifactsLocationSasToken'))]",
       "deploySql": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-sql-cluster.json',parameters('_artifactsLocationSasToken'))]"
     },
-    "vnetPrefix": "10.0.0.0/16",
-    "adSubnetPrefix": "10.0.0.0/24",
-    "sqlSubnetPrefix": "10.0.1.0/24",
-    "fsSubnetPrefix": "10.0.2.0/24",
-    "fsSubnetCLPrefix": "10.0.3.0/24",
-    "controllerSubnetPrefix": "10.0.4.0/24",
-    "managementSubnetPrefix": "10.0.5.0/24",
-    "publisherSubnetPrefix": "10.0.6.0/24",
-    "frontendadSubnetPrefix": "10.0.7.0/24",
-    "workerSubnetPrefix": "10.0.8.0/21",
     "adStatipIP":["10.0.0.10","10.0.0.11"],
     "sqllistenerip":"10.0.1.250",
     "networkSettings": {
-      "vnetName": "[variables('names').vnet]",
+      "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
         "addressPrefixes": [
-          "[variables('vnetPrefix')]"
+          "[parameters('vnetPrefix')]"
         ]
       },
       "subnets": [
         {
-          "name": "[variables('names').adSubnetName]",
+          "name": "[parameters('adSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('adSubnetPrefix')]",
+            "addressPrefix": "[parameters('adSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').adNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('adSubnetName').adNsg )]"
             }
           }
         },
         {
-          "name": "[variables('names').sqlSubnetName]",
+          "name": "[parameters('fsSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('sqlSubnetPrefix')]",
+            "addressPrefix": "[parameters('fsSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').sqlNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsSubnetName').sqlNsg )]"
             }
           }
         },
         {
-          "name": "[variables('names').fileServerSubnetName]",
+          "name": "[parameters('fsCLSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('fsSubnetPrefix')]",
+            "addressPrefix": "[parameters('fsCLSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsCLSubnetName').fsNsg )]"
             }
           }
         },
         {
-          "name": "[variables('names').fileServerCLSubnetName]",
+          "name": "[parameters('sqlSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('fsSubnetCLPrefix')]",
+            "addressPrefix": "[parameters('sqlSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsCLNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('sqlSubnetName').fsCLNsg )]"
             }
           }
         },
         {
-          "name": "ControllerSubnet",
+          "name": "[parameters('controllerSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('controllerSubnetPrefix')]"
+            "addressPrefix": "[parameters('controllerSubnetPrefix')]"
           }
         },
         {
-          "name": "ManagementSubnet",
+          "name": "[parameters('ManagementSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('managementSubnetPrefix')]"
+            "addressPrefix": "[parameters('ManagementSubnetPrefix')]"
           }
         },
         {
-          "name": "PublisherSubnet",
+          "name": "[parameters('FrontendSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('publisherSubnetPrefix')]"
+            "addressPrefix": "[parameters('FrontendSubnetPrefix')]"
           }
         },
         {
-          "name": "FrontendSubnet",
+          "name": "[parameters('PublisherSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('frontendadSubnetPrefix')]"
+            "addressPrefix": "[parameters('PublisherSubnetPrefix')]"
           }
         },
         {
-          "name": "WorkerSubnet",
+          "name": "[parameters('WorkersSubnetName')]",
           "properties": {
-            "addressPrefix": "[variables('workerSubnetPrefix')]"
+            "addressPrefix": "[parameters('WorkersSubnetPrefix')]"
           }
         }
       ]
@@ -262,7 +389,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[variables('names').adNsg]",
+      "name": "[parameters('adSubnetName').adNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -271,7 +398,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[variables('names').fsNsg]",
+      "name": "[parameters('fsSubnetName').fsNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -280,7 +407,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[variables('names').fsCLNsg]",
+      "name": "[parameters('fsCLSubnetName').fsCLNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -289,7 +416,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[variables('names').sqlNsg]",
+      "name": "[parameters('sqlSubnetName').sqlNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -315,10 +442,10 @@
         }
       },
       "dependsOn": [
-        "[variables('names').adNsg]",
-        "[variables('names').fsNsg]",
-        "[variables('names').fsCLNsg]",
-        "[variables('names').sqlNsg]"
+        "[parameters('adSubnetName').adNsg]",
+        "[parameters('fsSubnetName').fsNsg]",
+        "[parameters('fsclSubnetName').fsCLNsg]",
+        "[parameters('sqlSubnetName').sqlNsg]"
       ]
     },
     {
