@@ -338,7 +338,7 @@
           "properties": {
             "addressPrefix": "[parameters('fsCLSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('names').fsNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsNsg )]"
             }
           }
         },
@@ -347,7 +347,7 @@
           "properties": {
             "addressPrefix": "[parameters('sqlSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('names').fsCLNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').fsCLNsg )]"
             }
           }
         },
