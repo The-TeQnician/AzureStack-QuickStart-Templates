@@ -389,7 +389,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('adSubnetName').adNsg]",
+      "name": "[parameters('names').adNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -398,7 +398,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('fsSubnetName').fsNsg]",
+      "name": "[parameters('names').fsNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -407,7 +407,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('fsCLSubnetName').fsCLNsg]",
+      "name": "[parameters('names').fsCLNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -416,7 +416,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('sqlSubnetName').sqlNsg]",
+      "name": "[parameters('names').sqlNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -442,10 +442,10 @@
         }
       },
       "dependsOn": [
-        "[parameters('adSubnetName').adNsg]",
-        "[parameters('fsSubnetName').fsNsg]",
-        "[parameters('fsclSubnetName').fsCLNsg]",
-        "[parameters('sqlSubnetName').sqlNsg]"
+        "[parameters('names').adNsg]",
+        "[parameters('names').fsNsg]",
+        "[parameters('names').fsCLNsg]",
+        "[parameters('names').sqlNsg]"
       ]
     },
     {

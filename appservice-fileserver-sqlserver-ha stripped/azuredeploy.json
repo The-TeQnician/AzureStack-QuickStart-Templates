@@ -178,10 +178,10 @@
       "adNsg": "[concat(parameters('namePrefix'), 'ADNSG')]",
       "sqlNsg": "[concat(parameters('namePrefix'), 'SQLNSG')]",
       "fsNsg": "[concat(parameters('namePrefix'), 'FSNSG')]",
-      "fsCLNsg": "[concat(parameters('namePrefix'), 'FSCLNSG')]",
+      "fsCLNsg": "[concat(parameters('namePrefix'), 'FSCLNSG')]"
     },
     "NestedTemplate": {
-      "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
+      "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]"
     },
     "adStatipIP":["10.0.0.10","10.0.0.11"],
     "sqllistenerip":"10.0.1.250",
@@ -254,7 +254,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('adSubnetName').adNsg]",
+      "name": "[variables('names').adNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -263,7 +263,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('fsSubnetName').fsNsg]",
+      "name": "[variables('names').fsNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -272,7 +272,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('fsCLSubnetName').fsCLNsg]",
+      "name": "[variables('names').fsCLNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -281,7 +281,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('sqlSubnetName').sqlNsg]",
+      "name": "[variables('names').sqlNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -307,10 +307,10 @@
         }
       },
       "dependsOn": [
-        "[parameters('adSubnetName').adNsg]",
-        "[parameters('fsSubnetName').fsNsg]",
-        "[parameters('fsclSubnetName').fsCLNsg]",
-        "[parameters('sqlSubnetName').sqlNsg]"
+        "[variables('names').adNsg]",
+        "[variables('names').fsNsg]",
+        "[variables('names').fsCLNsg]",
+        "[variables('names').sqlNsg]"
       ]
      }
     ]
