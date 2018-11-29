@@ -249,7 +249,6 @@
         "description": "Worker Subnet Name"
       }
     },
-
     "sofsName": {
       "type": "string",
       "metadata": {
@@ -321,7 +320,7 @@
           "properties": {
             "addressPrefix": "[parameters('adSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('adSubnetName').adNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variable('names').adNsg )]"
             }
           }
         },
@@ -330,7 +329,7 @@
           "properties": {
             "addressPrefix": "[parameters('fsSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsSubnetName').sqlNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variable('names').sqlNsg )]"
             }
           }
         },
@@ -339,7 +338,7 @@
           "properties": {
             "addressPrefix": "[parameters('fsCLSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('fsCLSubnetName').fsNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('names').fsNsg )]"
             }
           }
         },
@@ -348,7 +347,7 @@
           "properties": {
             "addressPrefix": "[parameters('sqlSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('sqlSubnetName').fsCLNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('names').fsCLNsg )]"
             }
           }
         },
