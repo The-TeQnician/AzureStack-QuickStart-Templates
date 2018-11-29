@@ -388,7 +388,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('names').adNsg]",
+      "name": "[variables('names').adNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -397,7 +397,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('names').fsNsg]",
+      "name": "[variables('names').fsNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -406,7 +406,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('names').fsCLNsg]",
+      "name": "[variables('names').fsCLNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
@@ -415,7 +415,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('names').sqlNsg]",
+      "name": "[variables('names').sqlNsg]",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": []
