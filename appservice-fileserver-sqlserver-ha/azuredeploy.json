@@ -298,6 +298,10 @@
       "fileServerSubnetName": "FileServerSubnet",
       "fileServerCLSubnetName": "FileServerCLSubnet"
     },
+    "adsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('vnetName'),parameter('adSubnetName')]",
+    "sqlsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('vnetName'),parameter('SQLSubnetName')]",
+    "fileserversubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('vnetName'),parameter('fsSubnetName')]",
+    "fileserverCLsubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('vnetName'),parameter('fsCLSubnetName')]",
     "NestedTemplate": {
       "deployNetwork": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetwork.json',parameters('_artifactsLocationSasToken'))]",
       "deployNetworkDNS": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/VirtualNetworkDNS.json',parameters('_artifactsLocationSasToken'))]",
