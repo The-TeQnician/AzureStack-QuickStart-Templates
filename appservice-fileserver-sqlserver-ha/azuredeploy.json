@@ -441,10 +441,10 @@
         }
       },
       "dependsOn": [
-        "[parameters('names').adNsg]",
-        "[parameters('names').fsNsg]",
-        "[parameters('names').fsCLNsg]",
-        "[parameters('names').sqlNsg]"
+        "[variables('names').adNsg]",
+        "[variables('names').fsNsg]",
+        "[variables('names').fsCLNsg]",
+        "[variables('names').sqlNsg]"
       ]
     },
     {
