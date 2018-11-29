@@ -320,7 +320,7 @@
           "properties": {
             "addressPrefix": "[parameters('adSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variable('names').adNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').adNsg )]"
             }
           }
         },
@@ -329,7 +329,7 @@
           "properties": {
             "addressPrefix": "[parameters('fsSubnetPrefix')]",
             "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variable('names').sqlNsg )]"
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('names').sqlNsg )]"
             }
           }
         },
