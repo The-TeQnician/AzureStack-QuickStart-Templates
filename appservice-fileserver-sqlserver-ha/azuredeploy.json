@@ -707,7 +707,7 @@
     },
     "SQLserver":{
       "type": "string",
-      "value": "[variables('sqllistenerip')]"
+      "value": "[Parameters('sqllistenerip')]"
     },
     "SQLUser":{
       "type": "string",
