@@ -111,94 +111,87 @@
       }
     },
     "vnetName": {
-    "type": "string",
-    "defaultValue": "APPSvcRP-VNet",
-    "metadata": {
-      "description": "Name of the Virtual Network"
-    }
-  },
-  "VnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.0.0/16",
-    "metadata": {
-      "description": "VNET Address prefix"
-    }
-  },
-  "adSubnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.0.0/24",
-    "metadata": {
-      "description": "AD Subnet Prefix"
-    }
-  },
-  "adSubnetName": {
-    "type": "string",
-    "defaultValue": "AppSvcRP-VNet-AD",
-    "metadata": {
-      "description": "AD Subnet Name"
-    }
-  },
-  "fsSubnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.1.0/24",
-    "metadata": {
-      "description": "FileServer Subnet Prefix"
-    }
-  },
-  "fsSubnetName": {
-    "type": "string",
-    "defaultValue": "AppSvcRP-VNet-FS",
-    "metadata": {
-      "description": "FileServer Subnet Name"
-    }
-  },
-  "fsCLSubnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.2.0/24",
-    "metadata": {
-      "description": "FileServer Cluster Subnet Prefix"
-    }
-  },
-  "fsCLSubnetName": {
-    "type": "string",
-    "defaultValue": "AppSvcRP-VNet-FS-CL",
-    "metadata": {
-      "description": "FileServer Cluster Subnet Name"
-    }
-  },
-  "SQLSubnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.3.0/24",
-    "metadata": {
-      "description": "SQL Subnet Prefix"
-    }
-  },
-  "SQLSubnetName": {
-    "type": "string",
-    "defaultValue": "AppSvcRP-VNet-SQL",
-    "metadata": {
-      "description": "SQL Subnet Name"
-    }
-  },
-  "ControllersubnetPrefix": {
-    "type": "string",
-    "defaultValue": "10.0.4.0/24",
-    "metadata": {
-      "description": "Controller Subnet Prefix"
-    }
-  },
-  "ControllersubnetName": {
-    "type": "string",
-    "defaultValue": "AppSvcRP-VNet-Controller",
-    "metadata": {
-      "description": "Controller Subnet Name"
-    }
-  },
-    "ManagementsubnetPrefix": {
       "type": "string",
-      "defaultValue": "10.0.5.0/24",
+      "defaultValue": "APPSvcRP-VNet",
       "metadata": {
-        "description": "Management Subnet Prefix"
+        "description": "Name of the Virtual Network"
+      }
+    },
+    "VnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16",
+      "metadata": {
+        "description": "VNET Address prefix"
+      }
+    },
+    "adSubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-AD",
+      "metadata": {
+        "description": "AD Subnet Name"
+      }
+    },
+    "adSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "AD Subnet Prefix"
+      }
+    },
+    "fsSubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-FS",
+      "metadata": {
+        "description": "FileServer Subnet Name"
+      }
+    },
+    "fsSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.1.0/24",
+      "metadata": {
+        "description": "FileServer Subnet Prefix"
+      }
+    },
+    "fsCLSubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-FS-CL",
+      "metadata": {
+        "description": "FileServer Cluster Subnet Name"
+      }
+    },
+    "fsCLSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.2.0/24",
+      "metadata": {
+        "description": "FileServer Cluster Subnet Prefix"
+      }
+    },
+    "SQLSubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-SQL",
+      "metadata": {
+        "description": "SQL Subnet Name"
+      }
+    },
+    "SQLSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.3.0/24",
+      "metadata": {
+        "description": "SQL Subnet Prefix"
+      }
+    },
+    "ControllersubnetName": {
+      "type": "string",
+      "defaultValue": "AppSvcRP-VNet-Controller",
+      "metadata": {
+        "description": "Controller Subnet Name"
+      }
+    },
+    "ControllersubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.4.0/24",
+      "metadata": {
+        "description": "Controller Subnet Prefix"
       }
     },
     "ManagementsubnetName": {
@@ -208,11 +201,11 @@
         "description": "Management Subnet Name"
       }
     },
-    "FrontendsubnetPrefix": {
+    "ManagementsubnetPrefix": {
       "type": "string",
-      "defaultValue": "10.0.6.0/24",
+      "defaultValue": "10.0.5.0/24",
       "metadata": {
-        "description": "FrontEnd Subnet Prefix"
+        "description": "Management Subnet Prefix"
       }
     },
     "FrontendsubnetName": {
@@ -222,11 +215,11 @@
         "description": "Frontend Subnet Name"
       }
     },
-    "PublishersubnetPrefix": {
+    "FrontendsubnetPrefix": {
       "type": "string",
-      "defaultValue": "10.0.7.0/24",
+      "defaultValue": "10.0.6.0/24",
       "metadata": {
-        "description": "Publisher Subnet Prefix"
+        "description": "FrontEnd Subnet Prefix"
       }
     },
     "PublishersubnetName": {
@@ -236,11 +229,11 @@
         "description": "Publisher Subnet Name"
       }
     },
-    "WorkerssubnetPrefix": {
+    "PublishersubnetPrefix": {
       "type": "string",
-      "defaultValue": "10.0.8.0/21",
+      "defaultValue": "10.0.7.0/24",
       "metadata": {
-        "description": "Workers Subnet Prefix"
+        "description": "Publisher Subnet Prefix"
       }
     },
     "WorkerssubnetName": {
@@ -248,6 +241,20 @@
       "defaultValue": "AppSvcRP-VNet-Workers",
       "metadata": {
         "description": "Worker Subnet Name"
+      }
+    },
+    "WorkerssubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.8.0/21",
+      "metadata": {
+        "description": "Workers Subnet Prefix"
+      }
+    },
+    "sqllistenerip": {
+      "type": "string",
+      "defaultValue": "10.0.3.250",
+      "metadata": {
+        "description": "SQL Server Cluster Listener IP (in same range as the SQL Subnet)"
       }
     },
     "sofsName": {
@@ -311,7 +318,6 @@
       "deploySql": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-sql-cluster.json',parameters('_artifactsLocationSasToken'))]"
     },
     "adStatipIP":["10.0.0.10","10.0.0.11"],
-    "sqllistenerip":"10.0.1.250",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
@@ -653,7 +659,7 @@
             "value":"[parameters('sqlLoginPassword')]"
           },
           "SqlListenerIP":{
-            "value":"[variables('sqllistenerip')]"
+            "value":"[parameters('sqllistenerip')]"
           },
           "storageAccountType": {
             "value": "[variables('storageAccountType')]"
@@ -701,7 +707,7 @@
     },
     "SQLserver":{
       "type": "string",
-      "value": "[variables('sqllistenerip')]"
+      "value": "[parameters('sqllistenerip')]"
     },
     "SQLUser":{
       "type": "string",
