@@ -35,16 +35,12 @@
 "resources": [],
     "outputs": {
         "ADSubnetOutput": {
-            "value": "[variables('adstaticIP1')]",
+            "value": "[toUpper(variables('adsubnetstring'))]",
             "type": "string"
         },
           "ADStaticIP1Output": {
-            "type": "string",
-            "value": "[variables('adstaticIP1'))]"
-    },
-              "ADStaticIP2Output": {
-                "type": "string",
-                "value": "[variables('adstaticIP2'))]"
-              }
+            "value": "[toUpper(variables('adstaticIP1'))]",
+            "type": "string"
+    }
 }
 }
