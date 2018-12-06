@@ -29,7 +29,6 @@
     }
 },
    "variables": {
-   "adSubnetString": 
    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]"
    },
 "resources": [],
