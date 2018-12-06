@@ -29,7 +29,7 @@
     }
 },
    "variables": {
-   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 3)]",
+   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 1, 3)]",
    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]"
    },
 "resources": [],
