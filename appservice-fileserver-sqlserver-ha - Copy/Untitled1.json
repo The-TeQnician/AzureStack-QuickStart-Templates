@@ -32,13 +32,24 @@
     "adsubnetstring": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 4))]",
     "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
     "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]",
-    "adStatipIP": "[variables('adstaticIP1'),variables('adstaticIP2')"
+    "adStatipIP": "[concat(variables('adstaticIP1'),variables('adstaticIP2'))"
    },
 "resources": [],
     "outputs": {
         "ADSubnetOutput": {
             "value": "[variables('adstaticIP1')]",
             "type": "string"
-        }
-    }
+        },
+          "ADStaticIP1Output": {
+            "type": "string",
+            "value": "[variables('adstaticIP1'))]"
+    },
+              "ADStaticIP2Output": {
+                "type": "string",
+                "value": "[variables('adstaticIP2'))]"
+              },
+              "ADStaticIP2Output": {
+                 "type": "string",
+                 "value": "[variables('adstaticIP'))]"
+                  }
 }
