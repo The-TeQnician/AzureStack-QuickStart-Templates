@@ -29,18 +29,18 @@
     }
 },
    "variables": {
-   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 11)]",
+   "adSubnetString": 
    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]"
    },
 "resources": [],
     "outputs": {
         "ADSubnetOutput": {
-            "value": "[lastIndexOf(parameters('adSubnetPrefix'),0)]",
+            "value": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 1))]",
             "type": "string"
         },
-                "adstaticIP1Output": {
-                    "value": "[toUpper(variables('adstaticIP1'))]",
-                    "type": "string"
+        "adstaticIP1Output": {
+            "value": "[toUpper(variables('adstaticIP1'))]",
+            "type": "string"
                 }
     }
 }
