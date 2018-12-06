@@ -2,10 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "testString": {
-            "type": "string",
-            "defaultValue": "One Two Three"
-        },
     "adSubnetPrefix": {
       "type": "string",
       "defaultValue": "10.0.0.0/24",
@@ -33,14 +29,18 @@
     }
 },
    "variables": {
-   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 3)]"
+   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 3)]",
+   "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]"
    },
 "resources": [],
     "outputs": {
         "ADSubnetOutput": {
             "value": "[toUpper(variables('adSubnetString'))]",
             "type": "string"
-        }
-
+        },
+                "adstaticIP1Output": {
+                    "value": "[toUpper(variables('adstaticIP1'))]",
+                    "type": "string"
+                }
     }
 }
