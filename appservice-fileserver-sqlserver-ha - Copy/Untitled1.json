@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "testString": {
+            "type": "string",
+            "defaultValue": "One Two Three"
+        },
+    "adSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "AD Subnet Prefix"
+      }
+    },
+    "FirstDCIP": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3,
+      "metadata": {
+        "description": "Provide the latest octate of the IP Address for the First Domain Controller, for example 10"
+      },
+      "defaultValue": "10"
+    },
+    "SecondDCIP": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3,
+      "metadata": {
+        "description": "Provide the latest octate of the IP Address for the Second Domain Controller, for example 11"
+      },
+      "defaultValue": "11"
+    }
+},
+   "variables": {
+   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 5)]",
+   "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
+   "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]",
+   "adStatipIP":"[variables('adstaticIP1'),variables('adstaticIP2')",
+   },
+"resources": [],
+    "outputs": {
+        "ADSubnetOutput": {
+            "value": "[(variables('adSubnetString'))]",
+            "type": "string"
+        },
+        "ADStaticIP1Output": {
+            "type": "string",
+            "value": "[toUpper(variables('adstaticIP1'))]"
+        },
+        "ADStaticIP2Output": {
+                    "type": "string",
+                    "value": "[toUpper(variables('adstaticIP2'))]"
+                }
+    }
+}

@@ -216,7 +216,7 @@
    "adSubnetString":"[substring(parameters('adSubnetPrefix'), 0, 5)]",
    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
    "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]",
-   "adStatipIP":"[concat(variables('adstaticIP1'),variables('adstaticIP2'))]",
+   "adStatipIP":"[variables('adstaticIP1'),variables('adstaticIP2')",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
@@ -378,13 +378,8 @@
             "value": "[parameters('location')]"
           }
         }
-      },
-      "dependsOn": [
-        "deployAD"
-      ]
-    },
-    
-    }
+      }
+    }  
   ],
   "outputs": {}
 }
