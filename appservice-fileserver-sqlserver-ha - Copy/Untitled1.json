@@ -33,7 +33,7 @@
     }
 },
    "variables": {
-   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 5)]"
+   "adSubnetString": "[substring(parameters('adSubnetPrefix'), 0, 3)]"
    },
 "resources": [],
     "outputs": {
