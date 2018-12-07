@@ -29,8 +29,10 @@
     }
 },
    "variables": {
-    "adsubnetstring": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 4))]"
-   },
+    "adsubnetstring": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 4))]",
+    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
+    "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]"
+  },
 "resources": [],
     "outputs": {
         "ADSubnetOutput": {
@@ -38,8 +40,12 @@
             "type": "string"
         },
           "ADStaticIP1Output": {
-            "value": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
+            "value": "[variables('adstaticIP1'))]",
             "type": "string"
-              }
+    },
+    "ADStaticIP2Output": {
+      "value": "[variables('adstaticIP2'))]",
+      "type": "string"
+    }
 }
 }
