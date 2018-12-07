@@ -32,7 +32,7 @@
     "adsubnetstring": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 4))]",
     "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
     "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]",
-    "adstaticIP" : "[concat(variables('adstaticIP1'),variables('adstaticIP2'))]"
+    "adstaticIP" : "[concat(variables('adstaticIP1'),","variables('adstaticIP2'))]"
   },
 "resources": [],
     "outputs": {
