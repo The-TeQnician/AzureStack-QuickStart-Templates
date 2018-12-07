@@ -40,11 +40,11 @@
             "type": "string"
         },
           "ADStaticIP1Output": {
-            "value": "[variables('adstaticIP1'))]",
+            "value": "[toUpper(variables('adstaticIP1'))]",
             "type": "string"
     },
     "ADStaticIP2Output": {
-      "value": "[variables('adstaticIP2'))]",
+      "value": "[toUpper(variables('adstaticIP2'))]",
       "type": "string"
     }
 }
