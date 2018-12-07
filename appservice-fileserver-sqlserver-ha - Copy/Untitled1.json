@@ -38,7 +38,7 @@
             "type": "string"
         },
           "ADStaticIP1Output": {
-            "value": "[toUpper(variables('adsubnetstring'),parameters('FirstDCIP'))]",
+            "value": "[(variables('adsubnetstring'),parameters('FirstDCIP'))]",
             "type": "string"
               }
 }
