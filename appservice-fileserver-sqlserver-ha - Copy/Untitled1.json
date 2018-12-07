@@ -50,7 +50,7 @@
     },
     "ADStaticOutput": {
        "value": "[toUpper(variables('adstaticIP'))]",
-       "type": "string"
+       "type": "Array"
     }
 }
 }
