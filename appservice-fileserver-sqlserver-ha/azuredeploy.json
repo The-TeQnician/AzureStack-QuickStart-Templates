@@ -506,6 +506,7 @@
             "value": "[parameters('adminPassword')]"
           },
           "staticIP":{
+            "type": "array",
             "value":"[variables('adStaticIP')]"
           },
           "storageAccountType": {
