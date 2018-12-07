@@ -506,7 +506,7 @@
             "value": "[parameters('adminPassword')]"
           },
           "staticIP":{
-            "value":"[variables('adStatipIP')]"
+            "value":"[variables('adStaticIP')]"
           },
           "storageAccountType": {
             "value": "[variables('storageAccountType')]"
@@ -553,7 +553,7 @@
             "value": "[variables('networkSettings')]"
           },
           "staticIP":{
-            "value":"[variables('adStatipIP')]"
+            "value":"[variables('adStaticIP')]"
           },
           "location": {
             "value": "[parameters('location')]"
