@@ -41,7 +41,7 @@
       "defaultValue": "appsvc.local"
     },
     "FirstDCIP": {
-      "type": "string",
+      "type": "array",
       "minLength": 1,
       "maxLength": 3,
         "metadata": {
@@ -50,7 +50,7 @@
         "defaultValue": "10"
       },
       "SecondDCIP": {
-        "type": "string",
+        "type": "array",
         "minLength": 1,
         "maxLength": 3,
           "metadata": {
@@ -506,7 +506,6 @@
             "value": "[parameters('adminPassword')]"
           },
           "staticIP":{
-            "type": "array",
             "value":"[variables('adStaticIP')]"
           },
           "storageAccountType": {
@@ -554,8 +553,7 @@
             "value": "[variables('networkSettings')]"
           },
           "staticIP":{
-            "type": "array",
-            "value":"[variables('adStaticIP')]"
+              "value":"[variables('adStaticIP')]"
           },
           "location": {
             "value": "[parameters('location')]"
