@@ -51,6 +51,9 @@
     "ADStaticOutput": {
        "value": "[toUpper(variables('adstaticIP'))]",
        "type": "string"
-    }
+    },
+    "stringOutputtoArray": {
+      "type": "array",
+      "value": "[array(parameters('adstaticIP'))]"
 }
 }
