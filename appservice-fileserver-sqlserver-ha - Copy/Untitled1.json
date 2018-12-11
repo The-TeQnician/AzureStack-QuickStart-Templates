@@ -55,5 +55,6 @@
     "stringOutputtoArray": {
       "type": "array",
       "value": "[array(parameters('adstaticIP'))]"
+    }
 }
 }
