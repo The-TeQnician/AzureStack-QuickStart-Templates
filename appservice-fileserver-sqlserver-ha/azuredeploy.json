@@ -40,24 +40,6 @@
       },
       "defaultValue": "appsvc.local"
     },
-    "FirstDCIP": {
-      "type": "array",
-      "minLength": 1,
-      "maxLength": 3,
-        "metadata": {
-          "description": "Provide the latest octat of the IP Address for the First Domain Controller, for example 10"
-        },
-        "defaultValue": "10"
-      },
-      "SecondDCIP": {
-        "type": "array",
-        "minLength": 1,
-        "maxLength": 3,
-          "metadata": {
-          "description": "Provide the latest octat of the IP Address for the Second Domain Controller, for example 11"
-        },
-        "defaultValue": "11"
-        },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -155,6 +137,20 @@
       "metadata": {
         "description": "AD Subnet Prefix"
       }
+    },
+    "FirstDCIP": {
+      "type": "string",
+      "metadata": {
+        "description": "Provide IP Address for the First Domain Controller in the same Subnet as the ADSubnet, for example 10.0.0.10"
+      },
+      "defaultValue": "10.0.0.10"
+    },
+    "SecondDCIP": {
+      "type": "string",
+      "metadata": {
+        "description": "Provide IP Address for the Second Domain Controller in the same Subnet as the ADSubnet, for example 10.0.0.11"
+      },
+      "defaultValue": "10.0.0.11"
     },
   "fsSubnetName": {
     "type": "string",
@@ -335,10 +331,7 @@
       "deployS2D": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-s2d-cluster.json',parameters('_artifactsLocationSasToken'))]",
       "deploySql": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-sql-cluster.json',parameters('_artifactsLocationSasToken'))]"
     },
-    "adsubnetstring": "[substring(parameters('adSubnetPrefix'),0,sub(length(parameters('adSubnetPrefix')), 4))]",
-    "adstaticIP1": "[concat(variables('adsubnetstring'),parameters('FirstDCIP'))]",
-    "adstaticIP2": "[concat(variables('adsubnetstring'),parameters('SecondDCIP'))]",
-    "adstaticIP": "[concat(variables('adstaticIP1'),',',variables('adstaticIP2'))]",
+    "adstaticIP": "[parameters('FirstDCIP'),',',parameters('SecondDCIP'))]",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
