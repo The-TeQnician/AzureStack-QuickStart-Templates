@@ -138,12 +138,19 @@
         "description": "AD Subnet Prefix"
       }
     },
-    "DCIPs": {
-      "type": "array",
+    "FirstDCIP": {
+      "type": "string",
       "metadata": {
-        "description": "Provide IP Address for the Domain Controllers in the same Subnet as the ADSubnet, for example 10.0.0.10, 10.0.0.11"
+        "description": "Provide IP Address for the First Domain Controller in the same Subnet as the ADSubnet, for example 10.0.0.10"
       },
-      "defaultValue": "10.0.0.10, 10.0.0.11"
+      "defaultValue": "10.0.0.10"
+    },
+    "SecondDCIP": {
+      "type": "string",
+      "metadata": {
+        "description": "Provide IP Address for the Second Domain Controller in the same Subnet as the ADSubnet, for example 10.0.0.11"
+      },
+      "defaultValue": "10.0.0.11"
     },
   "fsSubnetName": {
     "type": "string",
@@ -324,7 +331,7 @@
       "deployS2D": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-s2d-cluster.json',parameters('_artifactsLocationSasToken'))]",
       "deploySql": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-sql-cluster.json',parameters('_artifactsLocationSasToken'))]"
     },
-    "adstaticIP": "[parameters('DCIPs')]",
+    "adstaticIP": "[parameters('FirstDCIP'),parameters('SecondDCIP')]",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
