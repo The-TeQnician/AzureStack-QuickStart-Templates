@@ -331,7 +331,7 @@
       "deployS2D": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-s2d-cluster.json',parameters('_artifactsLocationSasToken'))]",
       "deploySql": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/deploy-sql-cluster.json',parameters('_artifactsLocationSasToken'))]"
     },
-    "adstaticIP": "[parameters('FirstDCIP'),',',parameters('SecondDCIP'))]",
+    "adstaticIP": "[parameters('FirstDCIP'),',',parameters('SecondDCIP')]",
     "networkSettings": {
       "vnetName": "[parameters('vnetName')]",
       "addressSpace": {
