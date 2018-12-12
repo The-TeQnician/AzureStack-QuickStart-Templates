@@ -1,0 +1,63 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {"vnetName": {
+    "type": "string",
+    "defaultValue": "APPSvcRP-VNet",
+    "metadata": {
+      "description": "Name of the Virtual Network"
+    }
+  },
+  "VnetPrefix": {
+    "type": "string",
+    "defaultValue": "10.0.0.0/16",
+    "metadata": {
+      "description": "VNET Address prefix"
+    }
+  },
+  "adSubnetName": {
+    "type": "string",
+    "defaultValue": "AppSvcRP-VNet-AD",
+    "metadata": {
+      "description": "AD Subnet Name"
+    }
+  },
+    "adSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "AD Subnet Prefix"
+      }
+    }
+   },
+  "variables": {
+    "dnsServer": "192.168.100.2"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2017-06-01",
+      "name": "[parameters('vnetName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('adSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('adsubnetPrefix')]"
+            }
+          }
+        ],
+        "dhcpOptions": {
+          "dnsServers": [ "[variables('dnsServer')]" ]
+        }
+      }
+    }
+  ],
+  "outputs": { }
+}
