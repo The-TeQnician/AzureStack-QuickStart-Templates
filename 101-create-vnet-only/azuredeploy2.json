@@ -31,7 +31,7 @@
     }
    },
   "variables": {
-    "dnsServer": "192.168.100.2"
+    "dnsServer": "[10.0.0.10,10.0.0.11]"
   },
   "resources": [
     {
