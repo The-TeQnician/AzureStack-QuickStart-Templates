@@ -57,7 +57,7 @@
 
         "subnets": [
         {
-            "Name": "[parameters('adsubnetname']",
+            "Name": "[parameters('adsubnetname')]",
             "properties": {
             "addressPrefix": "[parameters('adsubnetPrefix')]"
             }
