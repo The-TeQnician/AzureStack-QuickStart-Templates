@@ -29,8 +29,15 @@
       "metadata": {
         "description": "AD Subnet Prefix"
       }
-    }
-   },
+    },
+      "location": {
+         "type": "string",
+         "defaultValue": "[resourceGroup().location]",
+           "metadata": {
+         "description": "Location for all resources."
+       }
+   }
+},
   "variables": {
     "dnsServer": ["10.0.0.10","10.0.0.11"]
   },
