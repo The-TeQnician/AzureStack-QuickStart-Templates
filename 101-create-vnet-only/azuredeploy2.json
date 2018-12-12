@@ -49,8 +49,20 @@
     "location": "[parameters('location')]",
     "dependsOn": [],
     "properties": {
-        "addressSpace": "[parameters('VnetPrefix')]",
-        "subnets": "[parameters('adsubnetPrefix')]",
+        "addressSpace": {
+           "addressPrefixes": [
+               "[parameters('VnetPrefix')]"
+           ]
+        },
+
+        "subnets": [
+        {
+            "Name": "[parameters('adsubnetname']",
+            "properties": {
+            "addressPrefix": "[parameters('adsubnetPrefix')]"
+            }
+        }
+    ],
         "dhcpOptions": {
             "dnsServers": "[variables('dnsServer')]"
         }
