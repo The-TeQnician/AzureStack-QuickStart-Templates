@@ -46,7 +46,7 @@
     }
 },
   "variables": {
-    "dnsServer": "[paramters(DNS1)]"
+    "dnsServer": "[parameters(DNS1)]"
   },
   "resources": [
 {
