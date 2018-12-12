@@ -34,30 +34,20 @@
     "dnsServer": ["10.0.0.10","10.0.0.11"]
   },
   "resources": [
-    {
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2017-06-01",
-      "name": "[parameters('vnetName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('VnetPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[parameters('adSubnetName')]",
-            "properties": {
-              "addressPrefix": "[parameters('adsubnetPrefix')]"
-            }
-          }
-        ],
+{
+    "apiVersion": "2015-06-15",
+    "type": "Microsoft.Network/virtualNetworks",
+    "name": "[parameters(vnetName)]",
+    "location": "[parameters('location')]",
+    "dependsOn": [],
+    "properties": {
+        "addressSpace": "[parameters(VnetPrefix)]",
+        "subnets": "[parameters(adsubnetPrefix)]",
         "dhcpOptions": {
-          "dnsServers": [ "[variables('dnsServer')]" ]
+            "dnsServers": "[parameters('dnsServer')]"
         }
-      }
     }
-  ],
-  "outputs": { }
+}
+],
+"outputs": {}
 }
