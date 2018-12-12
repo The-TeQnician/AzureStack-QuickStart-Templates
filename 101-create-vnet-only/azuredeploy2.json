@@ -36,10 +36,17 @@
            "metadata": {
          "description": "Location for all resources."
        }
-   }
+   },
+    "DNS1": {
+        "type": "string",
+        "defaultValue": "10.0.0.10",
+        "metadata": {
+            "description": "First DNS"
+        }
+    }
 },
   "variables": {
-    "dnsServer": ["10.0.0.10","10.0.0.11"]
+    "dnsServer": "[paramters(DNS1)]"
   },
   "resources": [
 {
