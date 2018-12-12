@@ -42,7 +42,7 @@
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[parameters('addressPrefix')]"
+            "[parameters('VnetPrefix')]"
           ]
         },
         "subnets": [
