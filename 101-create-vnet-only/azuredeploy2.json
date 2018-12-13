@@ -46,7 +46,7 @@
     }
 },
   "variables": {
-    "dnsServer": "[parameters('DNS1')]"
+    "dnsServer": ["10.0.0.10"]
   },
   "resources": [
 {
@@ -71,7 +71,7 @@
         }
     ],
         "dhcpOptions": {
-            "dnsServers": "[parameters('dns1')]"
+            "dnsServers": "[variables('dnsServer')]"
         }
     }
 }
