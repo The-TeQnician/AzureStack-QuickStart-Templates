@@ -38,7 +38,7 @@
        }
    },
     "DNS1": {
-        "type": "string",
+        "type": "array",
         "defaultValue": "10.0.0.10",
         "metadata": {
             "description": "First DNS"
