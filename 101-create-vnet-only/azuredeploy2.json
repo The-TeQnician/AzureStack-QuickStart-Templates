@@ -71,7 +71,7 @@
         }
     ],
         "dhcpOptions": {
-            "dnsServers": "[variables('dnsServer')]"
+            "dnsServers": "[parameters('DNS1')]"
         }
     }
 }
